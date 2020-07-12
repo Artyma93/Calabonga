@@ -18,6 +18,7 @@ namespace Calabonga.Auth.IdentityServer
         {
 
             services.AddIdentityServer()
+                .AddInMemoryApiScopes(Configuration.ApiScopes)
                 .AddInMemoryClients(Configuration.GetClients())
                 .AddInMemoryApiResources(Configuration.GetApiResources())
                 .AddInMemoryIdentityResources(Configuration.GetIdentityResources())

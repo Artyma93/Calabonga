@@ -8,6 +8,13 @@ namespace Calabonga.Auth.IdentityServer
 {
     public static class Configuration
     {
+
+        public static IEnumerable<ApiScope> ApiScopes =>
+        new List<ApiScope>
+        {
+            new ApiScope("OrdersAPI", "OrdersAPI")
+        };
+
         public static IEnumerable<Client> GetClients() =>
         new List<Client>
         {
