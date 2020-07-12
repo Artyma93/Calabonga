@@ -21,9 +21,16 @@ namespace Calabonga.Auth.Users.Api.Controllers
             return View();
         }
 
-        public IActionResult GetOrders()
+        public async Task<IActionResult> GetOrders()
         {
-            ViewBag.Message = "Test";
+
+            var ordersClient = httpClientFactory.CreateClient();
+
+            var response = await ordersClient.GetAsync("https://localhost:5001/site/index");
+
+            var message = await response.Content.ReadAsStringAsync();
+
+            ViewBag.Message = message;
             return View();
         }
     }
