@@ -12,5 +12,10 @@ namespace Calabonga.Auth.Users.Api.Controllers
         {
             return View();
         }
+
+        public string Secret()
+        {
+            return "Secret string from Orders API";
+        }
     }
 }
