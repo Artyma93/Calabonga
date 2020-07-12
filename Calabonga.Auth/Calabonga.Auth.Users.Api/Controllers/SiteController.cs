@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Calabonga.Auth.Users.Api.Controllers
 {
+    [Route("[controller]")]
     public class SiteController : Controller
     {
         private readonly IHttpClientFactory httpClientFactory;
@@ -16,17 +17,19 @@ namespace Calabonga.Auth.Users.Api.Controllers
             this.httpClientFactory = httpClientFactory;
         }
 
+        [Route("[action]")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("[action]")]
         public async Task<IActionResult> GetOrders()
         {
 
             var ordersClient = httpClientFactory.CreateClient();
 
-            var response = await ordersClient.GetAsync("https://localhost:5001/site/index");
+            var response = await ordersClient.GetAsync("https://localhost:5001/site/secret");
 
             var message = await response.Content.ReadAsStringAsync();
 
