@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Calabonga.Auth.Orders.Api.Controllers
 {
-    //[Route("[controller]")]
     //[ApiController]
+    [Route("[controller]")]
     public class SiteController : Controller
     {
         public IActionResult Index()
@@ -16,6 +16,7 @@ namespace Calabonga.Auth.Orders.Api.Controllers
             return View();
         }
 
+        [Route("[action]")]
         public string Secret()
         {
             return "Secret string from Orders API";
