@@ -16,6 +16,13 @@ namespace Calabonga.Auth.IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddIdentityServer()
+                .AddInMemoryClients(Configuration.GetClients())
+                .AddInMemoryApiResources(Configuration.GetApiResources())
+                .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
+                .AddDeveloperSigningCredential();
+
             services.AddControllersWithViews();
         }
 
@@ -29,8 +36,7 @@ namespace Calabonga.Auth.IdentityServer
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseIdentityServer();
 
             app.UseEndpoints(endpoints =>
             {

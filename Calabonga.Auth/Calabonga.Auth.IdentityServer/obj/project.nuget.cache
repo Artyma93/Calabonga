@@ -1,8 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "jPl4Rm7xtvpWSnyqtSLCtXO0s4V654D2I6fSwMJ0RnB80sUEq1gxu11ETI5D+Rio5AiKk3jeAqJ/TlPMBxBUGQ==",
+  "dgSpecHash": "zkZc2+biEuD1tYnItoG8cT4sqSLhFvc6N6fY3VdriUMAw5iRRA0mOE2BQQSK5scAfY9xIMbsJAUwJDNE6JaVgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\samtehnik\\.nuget\\packages\\identitymodel\\4.3.0\\identitymodel.4.3.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\identityserver4\\4.0.2\\identityserver4.4.0.2.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\identityserver4.storage\\4.0.2\\identityserver4.storage.4.0.2.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\3.1.0\\microsoft.aspnetcore.authentication.openidconnect.3.1.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\5.6.0\\microsoft.identitymodel.jsonwebtokens.5.6.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\microsoft.identitymodel.logging\\5.6.0\\microsoft.identitymodel.logging.5.6.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\microsoft.identitymodel.protocols\\5.6.0\\microsoft.identitymodel.protocols.5.6.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\5.6.0\\microsoft.identitymodel.protocols.openidconnect.5.6.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.6.0\\microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\system.identitymodel.tokens.jwt\\5.6.0\\system.identitymodel.tokens.jwt.5.6.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\system.text.encodings.web\\4.7.0\\system.text.encodings.web.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
