@@ -1,20 +1,20 @@
 ﻿{
-  "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
-    "iisExpress": {
-      "applicationUrl": "http://localhost:53853",
-      "sslPort": 44367
-    }
-  },
+  //"iisSettings": {
+  //  "windowsAuthentication": false, 
+  //  "anonymousAuthentication": true, 
+  //  "iisExpress": {
+  //    "applicationUrl": "http://localhost:53853",
+  //    "sslPort": 44367
+  //  }
+  //},
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
+    //"IIS Express": {
+    //  "commandName": "IISExpress",
+    //  "launchBrowser": true,
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development"
+    //  }
+    //},
     "Calabonga.Auth.Orders.Api": {
       "commandName": "Project",
       "launchBrowser": true,
