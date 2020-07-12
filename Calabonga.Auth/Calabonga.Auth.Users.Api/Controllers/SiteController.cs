@@ -13,6 +13,10 @@ namespace Calabonga.Auth.Users.Api.Controllers
             return View();
         }
 
-
+        public IActionResult GetOrders()
+        {
+            ViewBag.Message = "Test";
+            return View();
+        }
     }
 }
