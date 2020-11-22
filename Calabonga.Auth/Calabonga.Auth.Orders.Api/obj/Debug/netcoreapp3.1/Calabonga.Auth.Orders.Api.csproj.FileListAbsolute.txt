@@ -64,3 +64,11 @@ D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\obj\Debug\netcore
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\obj\Debug\netcoreapp3.1\Calabonga.Auth.Orders.Api.pdb
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\obj\Debug\netcoreapp3.1\Calabonga.Auth.Orders.Api.genruntimeconfig.cache
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\obj\Debug\netcoreapp3.1\Calabonga.Auth.Orders.Api.csproj.CopyComplete
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Orders.Api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

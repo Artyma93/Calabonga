@@ -66,3 +66,5 @@ D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Users.Api\obj\Debug\netcorea
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Users.Api\obj\Debug\netcoreapp3.1\Calabonga.Auth.Users.Api.pdb
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Users.Api\obj\Debug\netcoreapp3.1\Calabonga.Auth.Users.Api.genruntimeconfig.cache
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Users.Api\obj\Debug\netcoreapp3.1\Calabonga.Auth.Users.Api.csproj.CopyComplete
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Users.Api\bin\Debug\netcoreapp3.1\IdentityModel.dll
+D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Auth.Users.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
