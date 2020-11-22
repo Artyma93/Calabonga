@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,24 @@ namespace Calabonga.Auth.IdentityServer
                         {
                             "OrdersAPI"
                         }
+                    },
+
+                    new Client
+                    {
+                        ClientId = "client_id_mvc",
+                        ClientSecrets = {new Secret("client_secret_mvc".Sha256())},
+
+                        AllowedGrantTypes = GrantTypes.Code,
+
+                        AllowedScopes =
+                        {
+                            "OrdersAPI",
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile
+
+                        },
+
+                        RedirectUris = {"https://localhost:2001/signin-oidc"}
                     }
         };
 
@@ -34,7 +53,8 @@ namespace Calabonga.Auth.IdentityServer
         public static IEnumerable<IdentityResource> GetIdentityResources() =>
             new List<IdentityResource>
             {
-                new IdentityResources.OpenId()
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile()
             };
     }
 }

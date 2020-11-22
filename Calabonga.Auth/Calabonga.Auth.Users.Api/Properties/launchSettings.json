@@ -17,7 +17,7 @@
     //},
     "Calabonga.Auth.Users.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "site/index",
       "applicationUrl": "https://localhost:9001;http://localhost:9000",
       "environmentVariables": {
