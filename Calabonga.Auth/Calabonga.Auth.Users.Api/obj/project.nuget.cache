@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "HbVlA3Cu06Rn4Y/Krrh0CXdO+gQ9jStLwOhQu38QUnZezPq/ZAv/OKc5UTyy/Bmk2hlEYlxxFjdAeKTkhaiMUQ==",
+  "dgSpecHash": "VfOees+v0mlLthjqXg3jncnTurM+sPttEU+pP8FDcFd2PxOEVyWJzq6aDNjLoPc9e1N4SPo+msqZxJ8YTlIvzQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Users.Api\\Calabonga.Auth.Users.Api.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Users.Api\\Calabonga.Auth.Users.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\samtehnik\\.nuget\\packages\\identitymodel\\4.2.0\\identitymodel.4.2.0.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\system.text.encodings.web\\4.6.0\\system.text.encodings.web.4.6.0.nupkg.sha512"
+  ],
   "logs": []
 }

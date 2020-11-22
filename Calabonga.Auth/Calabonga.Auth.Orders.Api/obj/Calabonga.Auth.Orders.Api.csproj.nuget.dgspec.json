@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj": {}
+    "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj": {
+    "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj",
+        "projectUniqueName": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj",
         "projectName": "Calabonga.Auth.Orders.Api",
-        "projectPath": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj",
+        "projectPath": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\Calabonga.Auth.Orders.Api.csproj",
         "packagesPath": "C:\\Users\\samtehnik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\obj\\",
+        "outputPath": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.Orders.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -31,6 +31,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,6 +43,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -60,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

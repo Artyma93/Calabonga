@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj": {}
+    "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj": {
+    "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj",
+        "projectUniqueName": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj",
         "projectName": "Calabonga.Auth.IdentityServer",
-        "projectPath": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj",
+        "projectPath": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj",
         "packagesPath": "C:\\Users\\samtehnik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\samtehnik\\source\\repos\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\obj\\",
+        "outputPath": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -31,6 +31,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,10 +43,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "IdentityServer4": {
               "target": "Package",
-              "version": "[4.0.2, )"
+              "version": "[3.1.3, )"
             }
           },
           "imports": [
@@ -66,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
