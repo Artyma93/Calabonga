@@ -17,7 +17,10 @@ namespace Calabonga.Auth.IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddIdentityServer()
+            services.AddIdentityServer(options =>
+                {
+                    options.UserInteraction.LoginUrl = "/Auth/Login";
+                })
                 .AddInMemoryClients(Configuration.GetClients())
                 .AddInMemoryApiResources(Configuration.GetApiResources())
                 .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
