@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calabonga.Auth.IdentityServer.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calabonga.Auth.IdentityServer.Controllers
@@ -10,6 +11,17 @@ namespace Calabonga.Auth.IdentityServer.Controllers
     [Route("[controller]")]
     public class AuthController : Controller
     {
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public AuthController(
+            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+        }
+
         [Route("[action]")]
         public IActionResult Login(string returnUrl)
         {
@@ -18,9 +30,27 @@ namespace Calabonga.Auth.IdentityServer.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user == null)
+            {
+                ModelState.AddModelError("UserName", "User not found");
+                return View(model);
+            }
+
+            var signinResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+            if (signinResult.Succeeded)
+            {
+                return Redirect(model.ReturnUrl);
+            }
+            ModelState.AddModelError("UserName", "Something went wrong");
+            return View(model);
         }
     }
 }

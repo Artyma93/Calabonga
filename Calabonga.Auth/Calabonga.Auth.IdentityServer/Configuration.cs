@@ -40,7 +40,9 @@ namespace Calabonga.Auth.IdentityServer
 
                         },
 
-                        RedirectUris = {"https://localhost:2001/signin-oidc"}
+                        RedirectUris = {"https://localhost:2001/signin-oidc"},
+
+                        RequireConsent = false,
                     }
         };
 
