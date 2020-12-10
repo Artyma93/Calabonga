@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "eqBJEo7/g5VnandBmVxDhqZE7xPCmEi/oWbsUhwLniuG96XKvB135PmKGb24HuXVkZw3UVoUDkKX74AIgb3jXQ==",
+  "dgSpecHash": "ilOhPra1CxBYUiATdOqd7s/e0ovhg7HIWrHIn1CbiP2G5e7MmoW+lou3AiYGA0xEIzrf4PgMRs5eeoET1GJ6UA==",
   "success": true,
   "projectFilePath": "D:\\JS\\React\\Calabonga\\Calabonga.Auth\\Calabonga.Auth.IdentityServer\\Calabonga.Auth.IdentityServer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\samtehnik\\.nuget\\packages\\identitymodel\\4.1.1\\identitymodel.4.1.1.nupkg.sha512",
+    "C:\\Users\\samtehnik\\.nuget\\packages\\identitymodel\\4.2.0\\identitymodel.4.2.0.nupkg.sha512",
     "C:\\Users\\samtehnik\\.nuget\\packages\\identityserver4\\3.1.3\\identityserver4.3.1.3.nupkg.sha512",
     "C:\\Users\\samtehnik\\.nuget\\packages\\identityserver4.aspnetidentity\\3.1.3\\identityserver4.aspnetidentity.3.1.3.nupkg.sha512",
     "C:\\Users\\samtehnik\\.nuget\\packages\\identityserver4.storage\\3.1.3\\identityserver4.storage.3.1.3.nupkg.sha512",

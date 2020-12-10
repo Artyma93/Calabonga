@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calabonga.Auth.IdentityServer.Data;
+using Calabonga.Auth.IdentityServer.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,6 +42,7 @@ namespace Calabonga.Auth.IdentityServer
                 .AddInMemoryClients(Configuration.GetClients())
                 .AddInMemoryApiResources(Configuration.GetApiResources())
                 .AddInMemoryIdentityResources(Configuration.GetIdentityResources())
+                .AddProfileService<ProfileService>()
                 .AddDeveloperSigningCredential();
 
             services.AddControllersWithViews()

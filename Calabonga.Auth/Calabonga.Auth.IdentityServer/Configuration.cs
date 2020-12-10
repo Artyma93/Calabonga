@@ -43,6 +43,8 @@ namespace Calabonga.Auth.IdentityServer
                         RedirectUris = {"https://localhost:2001/signin-oidc"},
 
                         RequireConsent = false,
+
+                        //AlwaysIncludeUserClaimsInIdToken = true, // в id_token добавляем информацию из https://localhost:10001/connect/userinfo, но также они попадают в User Claims
                     }
         };
 

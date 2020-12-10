@@ -37,7 +37,10 @@ namespace Calabonga.Client.Mvc
                     config.ClientSecret = "client_secret_mvc";
                     config.SaveTokens = true;
                     config.ResponseType = "code";
+                    config.GetClaimsFromUserInfoEndpoint = true;
                 });
+
+            services.AddHttpClient();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
