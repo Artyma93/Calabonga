@@ -38,6 +38,7 @@ namespace Calabonga.Client.Mvc
                     config.SaveTokens = true;
                     config.ResponseType = "code";
                     config.GetClaimsFromUserInfoEndpoint = true;
+                    config.Scope.Add("OrdersAPI");
                 });
 
             services.AddHttpClient();
