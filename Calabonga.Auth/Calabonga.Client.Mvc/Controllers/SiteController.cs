@@ -54,5 +54,14 @@ namespace Calabonga.Client.Mvc.Controllers
 
             return View(model);
         }
+
+        [Authorize(Policy = "HasDateOfBirth")]
+        [Route("[action]")]
+        public async Task<IActionResult> Secret1()
+        {
+            var model = new ClaimManager(HttpContext, User);
+
+            return View(model);
+        }
     }
 }

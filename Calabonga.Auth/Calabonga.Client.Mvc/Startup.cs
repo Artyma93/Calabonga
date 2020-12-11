@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace Calabonga.Client.Mvc
 {
@@ -40,6 +41,14 @@ namespace Calabonga.Client.Mvc
                     config.GetClaimsFromUserInfoEndpoint = true;
                     config.Scope.Add("OrdersAPI");
                 });
+
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy("HasDateOfBirth", builder =>
+                {
+                    builder.RequireClaim(ClaimTypes.DateOfBirth);
+                });
+            });
 
             services.AddHttpClient();
 
