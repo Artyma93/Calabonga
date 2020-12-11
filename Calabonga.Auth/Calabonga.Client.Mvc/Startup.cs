@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Calabonga.Client.Mvc
 {
@@ -40,6 +41,10 @@ namespace Calabonga.Client.Mvc
                     config.ResponseType = "code";
                     config.GetClaimsFromUserInfoEndpoint = true;
                     config.Scope.Add("OrdersAPI");
+                    config.GetClaimsFromUserInfoEndpoint = true;
+                    //config.ClaimActions.MapAll(); // Маппит все Claims в UserClaim
+                    config.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, ClaimTypes.DateOfBirth); // Маппит конкретный Claim в UserClaim
+
                 });
 
             services.AddAuthorization(config =>
