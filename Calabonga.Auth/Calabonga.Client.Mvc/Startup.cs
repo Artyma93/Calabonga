@@ -58,9 +58,11 @@ namespace Calabonga.Client.Mvc
 
                 config.AddPolicy("OlderThan", builder =>
                 {
-                    builder.Requirements(new OlderThanRequirement(10));
+                    builder.AddRequirements(new OlderThanRequirement(10));
                 });
             });
+
+            services.AddSingleton<IAuthorizationHandler, OlderThanRequirementHandler>();
 
             services.AddHttpClient();
 

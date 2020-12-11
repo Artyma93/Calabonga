@@ -14,7 +14,7 @@ namespace Calabonga.Auth.IdentityServer.Infrastructure
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.DateOfBirth, "01.01.2020")
+                new Claim(ClaimTypes.DateOfBirth, "01.01.2010")
             };
             context.IssuedClaims.AddRange(claims);
 
