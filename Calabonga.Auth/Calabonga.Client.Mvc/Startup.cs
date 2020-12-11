@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
 
 namespace Calabonga.Client.Mvc
 {
@@ -53,6 +55,11 @@ namespace Calabonga.Client.Mvc
                 {
                     builder.RequireClaim(ClaimTypes.DateOfBirth);
                 });
+
+                config.AddPolicy("OlderThan", builder =>
+                {
+                    builder.Requirements(new OlderThanRequirement(10));
+                });
             });
 
             services.AddHttpClient();
@@ -79,6 +86,39 @@ namespace Calabonga.Client.Mvc
             {
                 endpoints.MapDefaultControllerRoute();
             });
+        }
+    }
+
+    public class OlderThanRequirement : IAuthorizationRequirement
+    {
+        public OlderThanRequirement(int years)
+        {
+            Years = years;
+        }
+
+        public int Years { get; }
+    }
+
+    public class OlderThanRequirementHandler : AuthorizationHandler<OlderThanRequirement>
+    {
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, OlderThanRequirement requirement)
+        {
+            var hasClaim = context.User.HasClaim(x => x.Type == ClaimTypes.DateOfBirth);
+            if(!hasClaim)
+            {
+                return Task.CompletedTask;
+            }
+
+            var dateOfBirth = context.User.FindFirst(x => x.Type == ClaimTypes.DateOfBirth).Value;
+            var date = DateTime.Parse(dateOfBirth, new CultureInfo("ru-Ru"));
+            var canEnterDiff = DateTime.Now.Year - date.Year;
+
+            if(canEnterDiff >= requirement.Years)
+            {
+                context.Succeed(requirement);
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

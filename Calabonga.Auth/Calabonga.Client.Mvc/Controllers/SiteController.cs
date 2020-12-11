@@ -63,5 +63,14 @@ namespace Calabonga.Client.Mvc.Controllers
 
             return View(model);
         }
+
+        [Authorize(Policy = "OlderThan")]
+        [Route("[action]")]
+        public async Task<IActionResult> Secret2()
+        {
+            var model = new ClaimManager(HttpContext, User);
+
+            return View(model);
+        }
     }
 }
