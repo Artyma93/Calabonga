@@ -13,6 +13,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.Globalization;
+using Microsoft.Extensions.Options;
 
 namespace Calabonga.Client.Mvc
 {
@@ -63,6 +64,7 @@ namespace Calabonga.Client.Mvc
             });
 
             services.AddSingleton<IAuthorizationHandler, OlderThanRequirementHandler>();
+            services.AddSingleton<IAuthorizationPolicyProvider, CustomAuthorizationPolicyProvider>();
 
             services.AddHttpClient();
 
@@ -93,7 +95,24 @@ namespace Calabonga.Client.Mvc
 
     public class CustomAuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
     {
+        private readonly AuthorizationOptions options;
 
+        public CustomAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options) : base(options)
+        {
+            this.options = options.Value;
+        }
+
+        public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
+        {
+            var policyExists = await base.GetPolicyAsync(policyName);
+            if (policyExists == null)
+            {
+                policyExists = new AuthorizationPolicyBuilder().AddRequirements(new OlderThanRequirement(10)).Build();
+                options.AddPolicy(policyName, policyExists);
+            }
+
+            return policyExists;
+        }
     }
 
     public class OlderThanRequirement : IAuthorizationRequirement
