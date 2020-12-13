@@ -56,10 +56,10 @@ namespace Calabonga.Client.Mvc
                     builder.RequireClaim(ClaimTypes.DateOfBirth);
                 });
 
-                config.AddPolicy("OlderThan", builder =>
-                {
-                    builder.AddRequirements(new OlderThanRequirement(10));
-                });
+                //config.AddPolicy("OlderThan", builder =>
+                //{
+                //    builder.AddRequirements(new OlderThanRequirement(10));
+                //});
             });
 
             services.AddSingleton<IAuthorizationHandler, OlderThanRequirementHandler>();
@@ -89,6 +89,11 @@ namespace Calabonga.Client.Mvc
                 endpoints.MapDefaultControllerRoute();
             });
         }
+    }
+
+    public class CustomAuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
+    {
+
     }
 
     public class OlderThanRequirement : IAuthorizationRequirement
