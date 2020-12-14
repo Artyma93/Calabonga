@@ -18,7 +18,9 @@ namespace Calabonga.Client.Mvc.ViewModels
 
             var idTokenJson = context.GetTokenAsync("id_token").GetAwaiter().GetResult();
             var accessTokenJson = context.GetTokenAsync("access_token").GetAwaiter().GetResult();
+            var refreshTokenJson = context.GetTokenAsync("refresh_token").GetAwaiter().GetResult();
 
+            AddTokenInfo("Refresh Token", refreshTokenJson, true);
             AddTokenInfo("Identity Token", idTokenJson);
             AddTokenInfo("Access Token", accessTokenJson);
             AddTokenInfo("User Claims", claims);
@@ -44,9 +46,9 @@ namespace Calabonga.Client.Mvc.ViewModels
             }
         }
 
-        private void AddTokenInfo(string nameToken, string idTokenJson)
+        private void AddTokenInfo(string nameToken, string idTokenJson, bool skipParsing = false)
         {
-            Items.Add(new ClaimViewer(nameToken, idTokenJson));
+            Items.Add(new ClaimViewer(nameToken, idTokenJson, skipParsing));
         }
 
         private void AddTokenInfo(string nameToken, IEnumerable<Claim> claims)

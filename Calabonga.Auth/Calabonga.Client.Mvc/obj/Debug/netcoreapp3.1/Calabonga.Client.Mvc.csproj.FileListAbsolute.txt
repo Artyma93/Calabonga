@@ -356,5 +356,3 @@ D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Client.Mvc\bin\Debug\netcoreapp3.
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Client.Mvc\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Client.Mvc\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Client.Mvc\obj\Debug\netcoreapp3.1\Calabonga.Client.Mvc.MvcApplicationPartsAssemblyInfo.cs
-D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Client.Mvc\obj\Debug\netcoreapp3.1\Razor\Views\Site\Secret1.cshtml.g.cs
-D:\JS\React\Calabonga\Calabonga.Auth\Calabonga.Client.Mvc\obj\Debug\netcoreapp3.1\Razor\Views\Site\Secret2.cshtml.g.cs
