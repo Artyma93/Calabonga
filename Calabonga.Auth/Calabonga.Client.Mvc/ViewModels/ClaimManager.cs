@@ -46,6 +46,24 @@ namespace Calabonga.Client.Mvc.ViewModels
             }
         }
 
+        public string RefreshToken
+        {
+            get
+            {
+                if (Items == null || Items.Count == 0)
+                {
+                    throw new InvalidOperationException("Not tokens found");
+                }
+                var token = Items.SingleOrDefault(x => x.Name == "Refresh Token");
+                if (token == null)
+                {
+                    throw new InvalidOperationException("Not tokens found");
+                }
+
+                return token.Token;
+            }
+        }
+
         private void AddTokenInfo(string nameToken, string idTokenJson, bool skipParsing = false)
         {
             Items.Add(new ClaimViewer(nameToken, idTokenJson, skipParsing));
