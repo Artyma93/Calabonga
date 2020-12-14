@@ -46,6 +46,8 @@ namespace Calabonga.Auth.IdentityServer
 
                         AccessTokenLifetime = 5,
 
+                        AllowOfflineAccess = true,
+
                         //AlwaysIncludeUserClaimsInIdToken = true, // в id_token добавляем информацию из https://localhost:10001/connect/userinfo, но также они попадают в User Claims
                     }
         };

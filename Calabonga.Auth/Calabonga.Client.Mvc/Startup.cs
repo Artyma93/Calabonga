@@ -45,6 +45,7 @@ namespace Calabonga.Client.Mvc
                     config.ResponseType = "code";
                     config.GetClaimsFromUserInfoEndpoint = true;
                     config.Scope.Add("OrdersAPI");
+                    config.Scope.Add("offline_access");
                     config.GetClaimsFromUserInfoEndpoint = true;
                     //config.ClaimActions.MapAll(); // Маппит все Claims в UserClaim
                     config.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, ClaimTypes.DateOfBirth); // Маппит конкретный Claim в UserClaim
