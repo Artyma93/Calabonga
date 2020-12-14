@@ -1,4 +1,5 @@
 ﻿using Calabonga.Client.Mvc.ViewModels;
+using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 
@@ -40,7 +41,9 @@ namespace Calabonga.Client.Mvc.Controllers
 
                 var client = httpCLientFactory.CreateClient();
 
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.AccessToken);
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.AccessToken);
+
+                client.SetBearerToken(model.AccessToken);
 
                 var stringAsync = await client.GetStringAsync("https://localhost:5001/site/secret");
 
