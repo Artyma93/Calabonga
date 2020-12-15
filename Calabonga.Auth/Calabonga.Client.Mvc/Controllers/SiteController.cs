@@ -2,6 +2,7 @@
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,14 @@ namespace Calabonga.Client.Mvc.Controllers
         public SiteController(IHttpClientFactory httpClientFactory)
         {
             this.httpClientFactory = httpClientFactory;
+        }
+
+        [Route("[action]")]
+        public IActionResult Logout()
+        {
+            return SignOut(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                OpenIdConnectDefaults.AuthenticationScheme);
         }
 
         [Route("[action]")]

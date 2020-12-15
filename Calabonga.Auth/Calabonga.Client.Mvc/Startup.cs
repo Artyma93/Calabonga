@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Globalization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace Calabonga.Client.Mvc
 {
@@ -33,10 +34,10 @@ namespace Calabonga.Client.Mvc
             services.AddAuthentication(config =>
             {
                 config.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                config.DefaultChallengeScheme = "oidc";
+                config.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddOpenIdConnect("oidc", config =>
+                .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, config =>
                 {
                     config.Authority = "https://localhost:10001";
                     config.ClientId = "client_id_mvc";
