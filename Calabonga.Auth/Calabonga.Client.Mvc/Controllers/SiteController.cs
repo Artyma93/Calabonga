@@ -20,11 +20,11 @@ namespace Calabonga.Client.Mvc.Controllers
     [Route("[controller]")]
     public class SiteController : Controller
     {
-        private readonly IHttpClientFactory httpCLientFactory;
+        private readonly IHttpClientFactory httpClientFactory;
 
-        public SiteController(IHttpClientFactory httpCLientFactory)
+        public SiteController(IHttpClientFactory httpClientFactory)
         {
-            this.httpCLientFactory = httpCLientFactory;
+            this.httpClientFactory = httpClientFactory;
         }
 
         [Route("[action]")]
@@ -57,7 +57,7 @@ namespace Calabonga.Client.Mvc.Controllers
 
         private async Task<string> GetSecretAsync(ClaimManager model)
         {
-            var client = httpCLientFactory.CreateClient();
+            var client = httpClientFactory.CreateClient();
 
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.AccessToken);
 
@@ -68,39 +68,48 @@ namespace Calabonga.Client.Mvc.Controllers
 
         private async Task RefreshToken(string refreshToken)
         {
-            var refreshClient = httpCLientFactory.CreateClient();
+            var refreshClient = httpClientFactory.CreateClient();
 
-            var parameters = new Dictionary<string, string>
+            var resultRefreshTokenAsync = await refreshClient.RequestRefreshTokenAsync(new RefreshTokenRequest
             {
-                ["refresh_token"] = refreshToken,
-                ["grant_type"] = "refresh_token",
-                ["client_id"] = "client_id_mvc",
-                ["client_secret"] = "client_secret_mvc",
-            };
+                Address = "https://localhost:10001/connect/token",
+                ClientId = "client_id_mvc",
+                ClientSecret = "client_secret_mvc",
+                RefreshToken = refreshToken,
+                Scope = "openid ordersAPI offline_access"
+            });
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:10001/connect/token")
-            {
-                Content = new FormUrlEncodedContent(parameters)
-            };
+            //var parameters = new Dictionary<string, string>
+            //{
+            //    ["refresh_token"] = refreshToken,
+            //    ["grant_type"] = "refresh_token",
+            //    ["client_id"] = "client_id_mvc",
+            //    ["client_secret"] = "client_secret_mvc",
+            //};
 
-            var basics = "client_id_mvc:client_secret_mvc";
+            //var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:10001/connect/token")
+            //{
+            //    Content = new FormUrlEncodedContent(parameters)
+            //};
 
-            var encodedData = Encoding.UTF8.GetBytes(basics);
+            //var basics = "client_id_mvc:client_secret_mvc";
 
-            var encodeData64Base = Convert.ToBase64String(encodedData);
+            //var encodedData = Encoding.UTF8.GetBytes(basics);
 
-            request.Headers.Add("Authorization", $"Bearer {encodeData64Base}");
+            //var encodeData64Base = Convert.ToBase64String(encodedData);
 
-            var response = await refreshClient.SendAsync(request);
+            //request.Headers.Add("Authorization", $"Bearer {encodeData64Base}");
 
-            var tokenData = await response.Content.ReadAsStringAsync();
+            //var response = await refreshClient.SendAsync(request);
 
-            var tokenResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(tokenData);
+            //var tokenData = await response.Content.ReadAsStringAsync();
 
-            var accessTokenNew = tokenResponse.GetValueOrDefault("access_token");
-            var refreshTokenNew = tokenResponse.GetValueOrDefault("refresh_token");
+            //var tokenResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(tokenData);
 
-            await UpdateAuthContextAsync(accessTokenNew, refreshToken);
+            //var accessTokenNew = tokenResponse.GetValueOrDefault("access_token");
+            //var refreshTokenNew = tokenResponse.GetValueOrDefault("refresh_token");
+
+            await UpdateAuthContextAsync(resultRefreshTokenAsync.AccessToken, resultRefreshTokenAsync.RefreshToken);
 
             //return Task.CompletedTask;
         }
