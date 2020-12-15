@@ -16,19 +16,12 @@ using System.Globalization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Calabonga.Client.Mvc.Infrastructure.Auth;
 
 namespace Calabonga.Client.Mvc
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(config =>
@@ -43,14 +36,15 @@ namespace Calabonga.Client.Mvc
                     config.ClientId = "client_id_mvc";
                     config.ClientSecret = "client_secret_mvc";
                     config.SaveTokens = true;
+
                     config.ResponseType = "code";
-                    config.GetClaimsFromUserInfoEndpoint = true;
+
                     config.Scope.Add("OrdersAPI");
                     config.Scope.Add("offline_access");
-                    config.GetClaimsFromUserInfoEndpoint = true;
-                    //config.ClaimActions.MapAll(); // Маппит все Claims в UserClaim
-                    config.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, ClaimTypes.DateOfBirth); // Маппит конкретный Claim в UserClaim
 
+                    config.GetClaimsFromUserInfoEndpoint = true;
+
+                    config.ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, ClaimTypes.DateOfBirth);
                 });
 
             services.AddAuthorization(config =>
@@ -59,11 +53,6 @@ namespace Calabonga.Client.Mvc
                 {
                     builder.RequireClaim(ClaimTypes.DateOfBirth);
                 });
-
-                //config.AddPolicy("OlderThan", builder =>
-                //{
-                //    builder.AddRequirements(new OlderThanRequirement(10));
-                //});
             });
 
             services.AddSingleton<IAuthorizationHandler, OlderThanRequirementHandler>();
@@ -71,11 +60,9 @@ namespace Calabonga.Client.Mvc
 
             services.AddHttpClient();
 
-            services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+            services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -91,63 +78,11 @@ namespace Calabonga.Client.Mvc
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name: "Default",
+                    pattern: "{controller=Site}/{action=Index}/{id?}");
             });
         }
     }
 
-    public class CustomAuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
-    {
-        private readonly AuthorizationOptions options;
-
-        public CustomAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options) : base(options)
-        {
-            this.options = options.Value;
-        }
-
-        public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
-        {
-            var policyExists = await base.GetPolicyAsync(policyName);
-            if (policyExists == null)
-            {
-                policyExists = new AuthorizationPolicyBuilder().AddRequirements(new OlderThanRequirement(10)).Build();
-                options.AddPolicy(policyName, policyExists);
-            }
-
-            return policyExists;
-        }
-    }
-
-    public class OlderThanRequirement : IAuthorizationRequirement
-    {
-        public OlderThanRequirement(int years)
-        {
-            Years = years;
-        }
-
-        public int Years { get; }
-    }
-
-    public class OlderThanRequirementHandler : AuthorizationHandler<OlderThanRequirement>
-    {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, OlderThanRequirement requirement)
-        {
-            var hasClaim = context.User.HasClaim(x => x.Type == ClaimTypes.DateOfBirth);
-            if(!hasClaim)
-            {
-                return Task.CompletedTask;
-            }
-
-            var dateOfBirth = context.User.FindFirst(x => x.Type == ClaimTypes.DateOfBirth).Value;
-            var date = DateTime.Parse(dateOfBirth, new CultureInfo("ru-Ru"));
-            var canEnterDiff = DateTime.Now.Year - date.Year;
-
-            if(canEnterDiff >= requirement.Years)
-            {
-                context.Succeed(requirement);
-            }
-
-            return Task.CompletedTask;
-        }
-    }
 }

@@ -18,32 +18,39 @@ using System.Threading.Tasks;
 
 namespace Calabonga.Client.Mvc.Controllers
 {
-    [Route("[controller]")]
     public class SiteController : Controller
     {
-        private readonly IHttpClientFactory httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public SiteController(IHttpClientFactory httpClientFactory)
         {
-            this.httpClientFactory = httpClientFactory;
+            _httpClientFactory = httpClientFactory;
         }
 
-        [Route("[action]")]
+        public IActionResult GoodBye()
+        {
+            return View();
+        }
+
+
         public IActionResult Logout()
         {
+            var parameters = new AuthenticationProperties
+            {
+                RedirectUri = "/Site/Index"
+            };
             return SignOut(
+                parameters,
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 OpenIdConnectDefaults.AuthenticationScheme);
         }
 
-        [Route("[action]")]
         public IActionResult Index()
         {
             return View();
         }
 
         [Authorize]
-        [Route("[action]")]
         public async Task<IActionResult> Secret()
         {
             var model = new ClaimManager(HttpContext, User);
@@ -51,7 +58,6 @@ namespace Calabonga.Client.Mvc.Controllers
             try
             {
                 ViewBag.Message = await GetSecretAsync(model);
-
                 return View(model);
             }
             catch (Exception exception)
@@ -60,25 +66,19 @@ namespace Calabonga.Client.Mvc.Controllers
                 var model2 = new ClaimManager(HttpContext, User);
                 ViewBag.Message = await GetSecretAsync(model2);
             }
-
             return View(model);
         }
 
         private async Task<string> GetSecretAsync(ClaimManager model)
         {
-            var client = httpClientFactory.CreateClient();
-
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.AccessToken);
-
+            var client = _httpClientFactory.CreateClient();
             client.SetBearerToken(model.AccessToken);
-
             return await client.GetStringAsync("https://localhost:5001/site/secret");
         }
 
         private async Task RefreshToken(string refreshToken)
         {
-            var refreshClient = httpClientFactory.CreateClient();
-
+            var refreshClient = _httpClientFactory.CreateClient();
             var resultRefreshTokenAsync = await refreshClient.RequestRefreshTokenAsync(new RefreshTokenRequest
             {
                 Address = "https://localhost:10001/connect/token",
@@ -88,53 +88,20 @@ namespace Calabonga.Client.Mvc.Controllers
                 Scope = "openid ordersAPI offline_access"
             });
 
-            //var parameters = new Dictionary<string, string>
-            //{
-            //    ["refresh_token"] = refreshToken,
-            //    ["grant_type"] = "refresh_token",
-            //    ["client_id"] = "client_id_mvc",
-            //    ["client_secret"] = "client_secret_mvc",
-            //};
-
-            //var request = new HttpRequestMessage(HttpMethod.Post, "https://localhost:10001/connect/token")
-            //{
-            //    Content = new FormUrlEncodedContent(parameters)
-            //};
-
-            //var basics = "client_id_mvc:client_secret_mvc";
-
-            //var encodedData = Encoding.UTF8.GetBytes(basics);
-
-            //var encodeData64Base = Convert.ToBase64String(encodedData);
-
-            //request.Headers.Add("Authorization", $"Bearer {encodeData64Base}");
-
-            //var response = await refreshClient.SendAsync(request);
-
-            //var tokenData = await response.Content.ReadAsStringAsync();
-
-            //var tokenResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(tokenData);
-
-            //var accessTokenNew = tokenResponse.GetValueOrDefault("access_token");
-            //var refreshTokenNew = tokenResponse.GetValueOrDefault("refresh_token");
-
             await UpdateAuthContextAsync(resultRefreshTokenAsync.AccessToken, resultRefreshTokenAsync.RefreshToken);
-
-            //return Task.CompletedTask;
         }
 
-        private async Task UpdateAuthContextAsync(string accessTokenNew, string refreshToken)
+        private async Task UpdateAuthContextAsync(string accessTokenNew, string refreshTokenNew)
         {
             var authenticate = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             authenticate.Properties.UpdateTokenValue("access_token", accessTokenNew);
-            authenticate.Properties.UpdateTokenValue("refresh_token", refreshToken);
+            authenticate.Properties.UpdateTokenValue("refresh_token", refreshTokenNew);
 
             await HttpContext.SignInAsync(authenticate.Principal, authenticate.Properties);
         }
 
         [Authorize(Policy = "HasDateOfBirth")]
-        [Route("[action]")]
         public IActionResult Secret1()
         {
             var model = new ClaimManager(HttpContext, User);
@@ -143,7 +110,6 @@ namespace Calabonga.Client.Mvc.Controllers
         }
 
         [Authorize(Policy = "OlderThan")]
-        [Route("[action]")]
         public IActionResult Secret2()
         {
             var model = new ClaimManager(HttpContext, User);
