@@ -41,26 +41,29 @@ namespace Calabonga.Client.Mvc.Controllers
 
             try
             {
+                ViewBag.Message = await GetSecretAsync(model);
 
-                var client = httpCLientFactory.CreateClient();
-
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.AccessToken);
-
-                client.SetBearerToken(model.AccessToken);
-
-                var stringAsync = await client.GetStringAsync("https://localhost:5001/site/secret");
-
-                await RefreshToken(model.RefreshToken);
-
-                ViewBag.Message = stringAsync;
-
+                return View(model);
             }
             catch (Exception exception)
             {
-                ViewBag.Message = exception.Message;
+                await RefreshToken(model.RefreshToken);
+                var model2 = new ClaimManager(HttpContext, User);
+                ViewBag.Message = await GetSecretAsync(model2);
             }
 
             return View(model);
+        }
+
+        private async Task<string> GetSecretAsync(ClaimManager model)
+        {
+            var client = httpCLientFactory.CreateClient();
+
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", model.AccessToken);
+
+            client.SetBearerToken(model.AccessToken);
+
+            return await client.GetStringAsync("https://localhost:5001/site/secret");
         }
 
         private async Task RefreshToken(string refreshToken)
