@@ -34,10 +34,14 @@ namespace Calabonga.Auth.IdentityServer
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentityServer(options =>
-                {
-                    options.UserInteraction.LoginUrl = "/Auth/Login";
-                })
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Auth/Login";
+                config.LogoutPath = "/Auth/Logout";
+                config.Cookie.Name = "IdentityServer.Cookies";
+            });
+
+            services.AddIdentityServer()
                 .AddAspNetIdentity<IdentityUser>()
                 .AddInMemoryClients(Configuration.GetClients())
                 .AddInMemoryApiResources(Configuration.GetApiResources())

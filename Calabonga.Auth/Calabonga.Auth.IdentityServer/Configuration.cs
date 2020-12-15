@@ -41,6 +41,7 @@ namespace Calabonga.Auth.IdentityServer
                         },
 
                         RedirectUris = {"https://localhost:2001/signin-oidc"},
+                        PostLogoutRedirectUris = {"https://localhost:2001/signout-callback-oidc"},
 
                         RequireConsent = false,
 
