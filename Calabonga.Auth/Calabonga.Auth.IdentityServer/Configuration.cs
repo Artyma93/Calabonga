@@ -14,6 +14,19 @@ namespace Calabonga.Auth.IdentityServer
         {
                     new Client
                     {
+                        ClientId = "client_id_swagger",
+                        ClientSecrets = {new Secret("client_secret_swagger".Sha256())},
+                        AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                        AllowedCorsOrigins = { "https://localhost:7001" },
+                        AllowedScopes =
+                        {
+                            "SwaggerAPI",
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile,
+                        }
+                    },
+                    new Client
+                    {
                         ClientId = "client_id",
                         ClientSecrets = {new Secret("client_secret".Sha256())},
 
@@ -56,6 +69,7 @@ namespace Calabonga.Auth.IdentityServer
         public static IEnumerable<ApiResource> GetApiResources() =>
             new List<ApiResource>
             {
+                new ApiResource("SwaggerAPI"),
                 new ApiResource("OrdersAPI")
             };
 

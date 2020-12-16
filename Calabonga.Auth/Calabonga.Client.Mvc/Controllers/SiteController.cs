@@ -37,7 +37,7 @@ namespace Calabonga.Client.Mvc.Controllers
         {
             var parameters = new AuthenticationProperties
             {
-                RedirectUri = "/Site/Index"
+                RedirectUri = "/Site/GoodBye"
             };
             return SignOut(
                 parameters,
