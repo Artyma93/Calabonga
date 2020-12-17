@@ -14,6 +14,22 @@ namespace Calabonga.Auth.IdentityServer
         {
                     new Client
                     {
+                        ClientId = "client_id_js",
+                        RequireClientSecret = false,
+                        RequireConsent = false,
+                        RequirePkce = true,
+                        AllowedGrantTypes = GrantTypes.Code,
+                        AllowedCorsOrigins = { "https://localhost:9001" },
+                        RedirectUris = { "https://localhost:9001/callback.html" },
+                        AllowedScopes =
+                        {
+                            "OrdersAPI",
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile,
+                        }
+                    },
+                    new Client
+                    {
                         ClientId = "client_id_swagger",
                         ClientSecrets = {new Secret("client_secret_swagger".Sha256())},
                         AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
