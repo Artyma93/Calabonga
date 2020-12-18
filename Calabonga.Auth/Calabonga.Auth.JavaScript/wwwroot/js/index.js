@@ -1,4 +1,5 @@
 ﻿document.getElementById("login").addEventListener("click", login);
+document.getElementById("callApi").addEventListener("click", callApi);
 
 const settings = {
     authority: "https://localhost:10001",
@@ -17,6 +18,29 @@ manager.getUser().then(function (user) {
         print("user not logged in")
     }
 })
+
+function callApi() {
+    manager.getUser().then(function (user) {
+        if (user === null) {
+            print("Unauthorized");
+        }
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://localhost:5001/site/secret");
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                print(xhr.responseText, xhr.response);
+            } else {
+                print("Something went wrong", xhr);
+            }
+        }
+
+        xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
+        xhr.send();
+
+    }).catch(function (error) {
+        print(error)
+    })
+}
 
 function login() {
     manager.signinRedirect();

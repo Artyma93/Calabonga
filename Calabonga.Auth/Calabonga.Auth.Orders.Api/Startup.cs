@@ -18,6 +18,14 @@ namespace Calabonga.Auth.Orders.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(config =>
+            {
+                config.AddPolicy("DefaultPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, config =>
                 {
@@ -41,6 +49,8 @@ namespace Calabonga.Auth.Orders.Api
             }
 
             app.UseRouting();
+
+            app.UseCors("DefaultPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
