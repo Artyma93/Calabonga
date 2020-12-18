@@ -1,12 +1,14 @@
 ﻿document.getElementById("login").addEventListener("click", login);
 document.getElementById("callApi").addEventListener("click", callApi);
+document.getElementById("refresh").addEventListener("click", refresh);
 
 const settings = {
     authority: "https://localhost:10001",
     client_id: "client_id_js",
     response_type: "code",
     scope: "openid profile OrdersAPI",
-    redirect_uri: "https://localhost:9001/callback.html"
+    redirect_uri: "https://localhost:9001/callback.html",
+    silent_redirect_uri: "https://localhost:9001/refresh.html",
 }
 
 const manager = new Oidc.UserManager(settings);
@@ -18,6 +20,15 @@ manager.getUser().then(function (user) {
         print("user not logged in")
     }
 })
+
+function refresh() {
+    manager.signinSilent()
+        .then(function (user) {
+            print("Token refreshed", user);
+        }).catch(function (error) {
+            print("Something went wrong");
+        })
+}
 
 function callApi() {
     manager.getUser().then(function (user) {
