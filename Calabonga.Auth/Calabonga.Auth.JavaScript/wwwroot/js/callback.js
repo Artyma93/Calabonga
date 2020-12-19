@@ -1,4 +1,5 @@
 ﻿const manager = new Oidc.UserManager({
+    userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
     loadUserInfo: true,
     response_mode: "query"
 });

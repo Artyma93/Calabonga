@@ -4,6 +4,7 @@ document.getElementById("refresh").addEventListener("click", refresh);
 document.getElementById("logout").addEventListener("click", logout);
 
 const settings = {
+    userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
     authority: "https://localhost:10001",
     client_id: "client_id_js",
     response_type: "code",
