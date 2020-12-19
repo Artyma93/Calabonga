@@ -1,6 +1,7 @@
 ﻿document.getElementById("login").addEventListener("click", login);
 document.getElementById("callApi").addEventListener("click", callApi);
 document.getElementById("refresh").addEventListener("click", refresh);
+document.getElementById("logout").addEventListener("click", logout);
 
 const settings = {
     authority: "https://localhost:10001",
@@ -9,6 +10,7 @@ const settings = {
     scope: "openid profile OrdersAPI",
     redirect_uri: "https://localhost:9001/callback.html",
     silent_redirect_uri: "https://localhost:9001/refresh.html",
+    post_logout_redirect_uri: "https://localhost:9001/index.html",
 }
 
 const manager = new Oidc.UserManager(settings);
@@ -20,6 +22,10 @@ manager.getUser().then(function (user) {
         print("user not logged in")
     }
 })
+
+function logout() {
+    manager.signoutRedirect();
+}
 
 function refresh() {
     manager.signinSilent()
