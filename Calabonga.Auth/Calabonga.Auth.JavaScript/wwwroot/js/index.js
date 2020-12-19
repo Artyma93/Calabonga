@@ -24,6 +24,10 @@ manager.getUser().then(function (user) {
     }
 })
 
+manager.events.addUserSignedOut(function () {
+    print("User sing out. Good bye.");
+});
+
 function logout() {
     manager.signoutRedirect();
 }
